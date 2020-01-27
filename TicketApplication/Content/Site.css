@@ -1,0 +1,223 @@
+body {
+  padding-top: 3.5rem;
+}
+
+h2.page-title {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 1.3rem;
+  margin-bottom: 4px;
+}
+
+h6.page-subtitle {
+  margin-bottom: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+MAIN.main-content, DIV.main-content {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+
+.navbar.bg-dark, .navbar-expand-md.bg-dark {
+  background: #2d5573 !important;
+}
+
+.resize-vertical textarea {
+  resize: vertical;
+}
+
+#MainContent_popupChooseAccounts_chkChooseAccounts
+{
+    padding: 0;
+}
+
+.dxbButton {
+  background: #2d5573;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 6px !important;
+  border: none;
+  text-transform: uppercase;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol" !important;
+  font-size: .8rem;
+}
+
+.dxbButton.dxbDisabled {
+  background: #666;
+}
+
+.dxbButton.dxbDisabled:hover {
+  background: #666;
+}
+
+.dxgvHeader {
+  background: #2d5573 !important;
+  color: #FFF;
+}
+
+.dxgvHeader table {
+  color: #FFF;
+}
+
+.dxgvCommandColumn a {
+  padding: 6px 8px;
+  color: #2d5573;
+  text-decoration: none;
+}
+
+.dxgvCommandColumn a:hover {
+  color: #4C688B;
+  color: #FFF;
+}
+
+.dxtcLite > .dxtc-stripContainer .dxtc-link {
+  color: #FFF;
+}
+
+.dxtc-activeTab .dxtc-link {
+  color: #333 !important;
+}
+
+.dxtcLite > .dxtc-stripContainer .dxtc-tab {
+  background: #2d5573;
+  color: #FFF !important;
+}
+
+.dxtc-top.dxtcLite > .dxtc-stripContainer .dxtc-activeTab .dxtc-link {
+  color: #333;
+}
+
+.dxeButton {
+  -webkit-transition: background 0.2s ease-in-out;
+  -moz-transition: background 0.2s ease-in-out;
+  -ms-transition: background 0.2s ease-in-out;
+  -o-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+}
+
+.dxeButton.dxeButtonEditButton {
+  background: #2d5573;
+  -webkit-transition: background 0.2s ease-in-out;
+  -moz-transition: background 0.2s ease-in-out;
+  -ms-transition: background 0.2s ease-in-out;
+  -o-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+}
+
+.dxbButton:hover {
+  background: #1f3e56;
+}
+
+.form-group {
+  margin-bottom: .5rem;
+}
+
+.new-debtor-form label, .case-top-form label {
+  font-size: .8rem;
+}
+
+.dxeListBoxItem {
+  font-size: .9rem;
+}
+
+.dxgvHeader .dxgvCommandColumnItem.dxbButton {
+  background: #FFF;
+  color: #333;
+}
+
+.redButton {
+  background: #c11e1e;
+  -webkit-transition: background 0.2s ease-in-out;
+  -moz-transition: background 0.2s ease-in-out;
+  -ms-transition: background 0.2s ease-in-out;
+  -o-transition: background 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out;
+}
+
+.redButton:hover {
+  background: #871616;
+}
+
+.home-page h4 {
+  font-size: 1.2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+
+.form-control {
+  border: 1px solid #a5a5a5;
+}
+
+.dxWeb_edtCheckBoxUnchecked, .dxWeb_edtCheckBoxUncheckedDisabled {
+  width: 20px;
+  height: 20px;
+  background: url("../Images/checkbox-unchecked.png");
+  background-size: cover;
+  cursor: pointer;
+}
+
+.dxWeb_edtCheckBoxChecked, .dxWeb_edtCheckBoxCheckedDisabled {
+  width: 20px;
+  height: 20px;
+  background: url("../Images/checkbox-checked.png");
+  background-size: cover;
+  cursor: pointer;
+}
+
+.dxWeb_edtCheckBoxUncheckedDisabled {
+    background: url("../Images/checkbox-unchecked-disabled.png");
+    background-size: cover;
+}
+
+.dxWeb_edtCheckBoxCheckedDisabled {
+    background: url("../Images/checkbox-checked-disabled.png");
+    background-size: cover;
+}
+
+.dxeTrackBar, .dxeIRadioButton, .dxeButtonEdit, .dxeTextBox, .dxeRadioButtonList, .dxeCheckBoxList, .dxeMemo, .dxeListBox, .dxeCalendar, .dxeColorTable {
+  border-radius: 2px;
+  padding: 0 4px;
+}
+
+body input.dxeEditArea {
+  color: #333;
+}
+
+td.dxeControlsCell {
+  border-top: none;
+}
+
+td.dxeErrorCellSys {
+  border-top: none;
+}
+
+td.dxeErrorCellSys td {
+  border-top: none;
+}
+
+.eventsGridButton {
+    padding: 5px 0;
+}
+
+/* BKY Styling */
+.case-form {
+  margin-top: 50px;
+  margin-bottom: 40px;
+}
+
+.correspondence-notes {
+  padding: 5px !important;
+  font-size: .9rem;
+  color: #333;
+}
+
+.notfoundpage a {
+  color: #3680db;
+}
+
+#MainContent_gvDebts_tcheader0 {
+  text-align: center;
+}
+
+.ui-menu .ui-menu-item-wrapper {
+  font-size: .8rem;
+}

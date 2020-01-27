@@ -1,0 +1,68 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Main.master.cs" Inherits="TicketApplication.Masters.Main" %>
+
+
+<%@ Register Assembly="DevExpress.Web.v14.2, Version=14.2.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web" TagPrefix="dx" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <title>Ticket Application</title>
+    <link rel="stylesheet" href="../Content/bootstrap.min.css" />
+    <link rel="stylesheet" href="../Content/Site.css" />
+</head>
+<body>
+    <form id="form1" runat="server">
+        <asp:ScriptManager ID="scriptManager1" runat="server" EnableHistory="true" EnablePartialRendering="true" EnablePageMethods="true">
+            <Scripts>
+                <asp:ScriptReference Path="~/Scripts/jquery-3.4.1.min.js" />
+                <asp:ScriptReference Path="~/Scripts/popper.min.js" />
+                <asp:ScriptReference Path="~/Scripts/bootstrap.min.js" />
+                <asp:ScriptReference Path="~/Scripts/default.js" />
+            </Scripts>
+        </asp:ScriptManager>
+
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+            <div class="container">
+                <a class="navbar-brand" href="/">Ticket System</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item" id="main_menu_home" runat="server">
+                            <a class="nav-link" href="/">Search <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item" id="main_menu_new_case" runat="server">
+                            <a class="nav-link" href="/case">New Case</a>
+                        </li>
+                        <li class="nav-item" id="main_menu_case" runat="server" style="display: none;">
+                            <a class="nav-link" href="#" id="main_menu_case_link" runat="server">Summary</a>
+                        </li>
+                        <li class="nav-item" id="main_menu_accounts" runat="server" style="display: none;">
+                            <a class="nav-link" href="#" id="main_menu_accounts_link" runat="server">Accounts</a>
+                        </li>
+                        <li class="nav-item" id="main_menu_annual_reports" runat="server" style="display: none;">
+                            <a class="nav-link" href="#" id="main_menu_annual_reports_link" runat="server">Annual Reports</a>
+                        </li>
+                        <li class="nav-item" id="main_menu_final_reports" runat="server" style="display: none;">
+                            <a class="nav-link" href="#" id="main_menu_final_reports_link" runat="server">Final Reports</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div role="main" class="main-content container">
+            <h2 class="page-title">
+                <asp:ContentPlaceHolder ID="PageTitle" runat="server"></asp:ContentPlaceHolder>
+            </h2>
+            <h6 class="page-subtitle">
+                <asp:ContentPlaceHolder ID="PageSubtitle" runat="server"></asp:ContentPlaceHolder>
+            </h6>
+            <asp:ContentPlaceHolder ID="MainContent" runat="server"></asp:ContentPlaceHolder>
+        </div>
+    </form>
+</body>
+</html>
