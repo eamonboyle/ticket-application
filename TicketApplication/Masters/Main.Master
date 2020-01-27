@@ -34,22 +34,10 @@
                         <li class="nav-item" id="main_menu_home" runat="server">
                             <a class="nav-link" href="/">Search <span class="sr-only">(current)</span></a>
                         </li>
-                        <li class="nav-item" id="main_menu_new_case" runat="server">
-                            <a class="nav-link" href="/case">New Case</a>
-                        </li>
-                        <li class="nav-item" id="main_menu_case" runat="server" style="display: none;">
-                            <a class="nav-link" href="#" id="main_menu_case_link" runat="server">Summary</a>
-                        </li>
-                        <li class="nav-item" id="main_menu_accounts" runat="server" style="display: none;">
-                            <a class="nav-link" href="#" id="main_menu_accounts_link" runat="server">Accounts</a>
-                        </li>
-                        <li class="nav-item" id="main_menu_annual_reports" runat="server" style="display: none;">
-                            <a class="nav-link" href="#" id="main_menu_annual_reports_link" runat="server">Annual Reports</a>
-                        </li>
-                        <li class="nav-item" id="main_menu_final_reports" runat="server" style="display: none;">
-                            <a class="nav-link" href="#" id="main_menu_final_reports_link" runat="server">Final Reports</a>
-                        </li>
                     </ul>
+                </div>
+                <div class="login-info text-right">
+                    <a id="logoutLink" runat="server" class="nav-link" href="/logout">Logout</a>
                 </div>
             </div>
         </nav>

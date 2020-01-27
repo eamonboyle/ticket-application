@@ -40,85 +40,13 @@ namespace TicketApplication.Masters {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl main_menu_home;
         
         /// <summary>
-        /// main_menu_new_case control.
+        /// logoutLink control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main_menu_new_case;
-        
-        /// <summary>
-        /// main_menu_case control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main_menu_case;
-        
-        /// <summary>
-        /// main_menu_case_link control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor main_menu_case_link;
-        
-        /// <summary>
-        /// main_menu_accounts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main_menu_accounts;
-        
-        /// <summary>
-        /// main_menu_accounts_link control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor main_menu_accounts_link;
-        
-        /// <summary>
-        /// main_menu_annual_reports control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main_menu_annual_reports;
-        
-        /// <summary>
-        /// main_menu_annual_reports_link control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor main_menu_annual_reports_link;
-        
-        /// <summary>
-        /// main_menu_final_reports control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl main_menu_final_reports;
-        
-        /// <summary>
-        /// main_menu_final_reports_link control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor main_menu_final_reports_link;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor logoutLink;
         
         /// <summary>
         /// PageTitle control.

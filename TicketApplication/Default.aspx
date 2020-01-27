@@ -7,6 +7,12 @@
 </asp:Content>
 <asp:Content ID="Content4" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>Content</h2>
+    <div class="row">
+
+        <div class="col-md-6 offset-3">
+            <dx:ASPxTextBox id="txtTest" runat="server" width="100%" CssClass="form-control form-control-sm"></dx:ASPxTextBox>
+        </div>
+
+    </div>
 
 </asp:Content>
