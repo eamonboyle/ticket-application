@@ -84,6 +84,107 @@ namespace TicketApplication.Helpers.Classes
             }
         }
 
+        public static DataTable OldDataQuery(SqlCommand command)
+        {
+            command.CommandTimeout = 0;
+            DataTable dt = null;
+            SqlConnection conn = null;
+
+            try
+            {
+                conn = new SqlConnection(connectionString);
+
+                try
+                {
+                    conn.Open();
+                    command.Connection = conn;
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    dt = new DataTable();
+                    adapter.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                    InsertErrorLog("Failed a WPMDataQuery", ex);
+                    dt = null;
+                }
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Dispose();
+                }
+            }
+
+            return dt;
+        }
+
+        public static bool OldNonQuery(SqlCommand command)
+        {
+            command.CommandTimeout = 0;
+            bool returnBool = true;
+            SqlConnection connection = null;
+
+            try
+            {
+                connection = new SqlConnection(connectionString);
+
+                try
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    command.ExecuteNonQuery();
+                }
+                catch (Exception ex)
+                {
+                    string s = ex.Message;
+                    InsertErrorLog("Failed WPMNonQuery", ex);
+                    returnBool = false;
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Dispose();
+                }
+            }
+            return returnBool;
+        }
+
+        public static object OldScalarQuery(SqlCommand command)
+        {
+            command.CommandTimeout = 0;
+            object returnObject = null;
+            SqlConnection connection = null;
+
+            try
+            {
+                connection = new SqlConnection(connectionString);
+
+                try
+                {
+                    connection.Open();
+                    command.Connection = connection;
+                    returnObject = command.ExecuteScalar();
+                }
+                catch (Exception ex)
+                {
+                    InsertErrorLog("Failed WPMScalarQuery", ex);
+                    returnObject = null;
+                }
+            }
+            finally
+            {
+                if (connection != null)
+                {
+                    connection.Dispose();
+                }
+            }
+
+            return returnObject;
+        }
+
         public static object Scalar(string sql, Dictionary<string, object> variables = null)
         {
             SqlConnection conn = null;
@@ -147,107 +248,6 @@ namespace TicketApplication.Helpers.Classes
             insertError.Parameters.Add("message", SqlDbType.VarChar).Value = message;
             insertError.Parameters.Add("stack_trace", SqlDbType.VarChar).Value = ex.StackTrace;
             bool entered = OldNonQuery(insertError);
-        }
-
-        private static DataTable OldDataQuery(SqlCommand command)
-        {
-            command.CommandTimeout = 0;
-            DataTable dt = null;
-            SqlConnection conn = null;
-
-            try
-            {
-                conn = new SqlConnection(connectionString);
-
-                try
-                {
-                    conn.Open();
-                    command.Connection = conn;
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    dt = new DataTable();
-                    adapter.Fill(dt);
-                }
-                catch (Exception ex)
-                {
-                    InsertErrorLog("Failed a WPMDataQuery", ex);
-                    dt = null;
-                }
-            }
-            finally
-            {
-                if (conn != null)
-                {
-                    conn.Dispose();
-                }
-            }
-
-            return dt;
-        }
-
-        private static bool OldNonQuery(SqlCommand command)
-        {
-            command.CommandTimeout = 0;
-            bool returnBool = true;
-            SqlConnection connection = null;
-
-            try
-            {
-                connection = new SqlConnection(connectionString);
-
-                try
-                {
-                    connection.Open();
-                    command.Connection = connection;
-                    command.ExecuteNonQuery();
-                }
-                catch (Exception ex)
-                {
-                    string s = ex.Message;
-                    InsertErrorLog("Failed WPMNonQuery", ex);
-                    returnBool = false;
-                }
-            }
-            finally
-            {
-                if (connection != null)
-                {
-                    connection.Dispose();
-                }
-            }
-            return returnBool;
-        }
-
-        private static object OldScalarQuery(SqlCommand command)
-        {
-            command.CommandTimeout = 0;
-            object returnObject = null;
-            SqlConnection connection = null;
-
-            try
-            {
-                connection = new SqlConnection(connectionString);
-
-                try
-                {
-                    connection.Open();
-                    command.Connection = connection;
-                    returnObject = command.ExecuteScalar();
-                }
-                catch (Exception ex)
-                {
-                    InsertErrorLog("Failed WPMScalarQuery", ex);
-                    returnObject = null;
-                }
-            }
-            finally
-            {
-                if (connection != null)
-                {
-                    connection.Dispose();
-                }
-            }
-
-            return returnObject;
         }
     }
 }
