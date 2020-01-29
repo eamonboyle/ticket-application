@@ -11,7 +11,10 @@ namespace TicketApplication.Masters
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                logoutLink.InnerText = "Logged in as: " + HttpContext.Current.User.Identity.Name + " - Logout?";
+            }
         }
     }
 }

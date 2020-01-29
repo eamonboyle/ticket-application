@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -11,7 +12,7 @@ namespace TicketApplication
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Debug.WriteLine(Helpers.Variables.current.UserId);
         }
     }
 }

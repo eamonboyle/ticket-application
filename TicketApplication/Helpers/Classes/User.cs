@@ -79,9 +79,6 @@ namespace TicketApplication.Helpers.Classes
         {
             string ipAddress = this.GetIPAddress();
 
-            // --------------------------------------------------------------------------------------------------------------------------------------------------
-            // check the users exists
-            // --------------------------------------------------------------------------------------------------------------------------------------------------
             string getCount = @"SELECT COUNT(id)
             FROM [dbo].[User]
             WHERE [username] = @username";
@@ -97,9 +94,6 @@ namespace TicketApplication.Helpers.Classes
                 return false;
             }
 
-            // --------------------------------------------------------------------------------------------------------------------------------------------------
-            // get the salt and hashed password
-            // --------------------------------------------------------------------------------------------------------------------------------------------------
             string getSalt = @"SELECT [salt]
             FROM [dbo].[User]
             WHERE [username] = @username";
@@ -118,24 +112,18 @@ namespace TicketApplication.Helpers.Classes
                     {"@username", this.Username}
                 });
 
-            // --------------------------------------------------------------------------------------------------------------------------------------------------
-            // compare the entered password with the one stored
-            // --------------------------------------------------------------------------------------------------------------------------------------------------
             ScryptEncoder encoder = new ScryptEncoder();
             bool passwordsMatch = encoder.Compare(salt + this.EnteredPassword, hashed);
             if (passwordsMatch)
             {
-                // --------------------------------------------------------------------------------------------------------------------------------------------------
-                // enter to log
-                // --------------------------------------------------------------------------------------------------------------------------------------------------
                 this.EnterLogin(ipAddress);
+
+                // set up the static variables here
+                this.SetupGlobalVars();
 
                 return true;
             }
 
-            // --------------------------------------------------------------------------------------------------------------------------------------------------
-            // failed login, insert fail to database
-            // --------------------------------------------------------------------------------------------------------------------------------------------------
             this.EnterLogin(ipAddress, true);
 
             return false;
@@ -414,6 +402,12 @@ namespace TicketApplication.Helpers.Classes
                 this.ForgottenLink = Helpers.OutputFromDB.StringEmpty(user["forgotten_link"]);
                 this.ForgottenValidUntil = Helpers.OutputFromDB.Date(user["forgotten_valid_until"]);
             }
+        }
+
+        private void SetupGlobalVars()
+        {
+            Helpers.Variables.current.UserId = this.Id;
+            Helpers.Variables.current.UserFullName = this.FirstName + " " + this.LastName;
         }
     }
 }

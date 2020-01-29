@@ -216,6 +216,7 @@
     <Compile Include="Helpers\Classes\User.cs" />
     <Compile Include="Helpers\General.cs" />
     <Compile Include="Helpers\OutputFromDB.cs" />
+    <Compile Include="Helpers\Variables.cs" />
     <Compile Include="Masters\Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
