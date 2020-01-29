@@ -54,6 +54,7 @@ namespace TicketApplication.Helpers.Classes
 
         public string ForgottenLink { get; set; }
 
+        public DateTime ForgottenValidUntil { get; set; }
         public int Id { get; set; }
 
         public string LastName { get; set; }
@@ -82,7 +83,7 @@ namespace TicketApplication.Helpers.Classes
             // check the users exists
             // --------------------------------------------------------------------------------------------------------------------------------------------------
             string getCount = @"SELECT COUNT(id)
-            FROM [dbo].[Users]
+            FROM [dbo].[User]
             WHERE [username] = @username";
 
             int count = Convert.ToInt32(Database.Scalar(getCount, new System.Collections.Generic.Dictionary<string, object>
@@ -100,7 +101,7 @@ namespace TicketApplication.Helpers.Classes
             // get the salt and hashed password
             // --------------------------------------------------------------------------------------------------------------------------------------------------
             string getSalt = @"SELECT [salt]
-            FROM [dbo].[Users]
+            FROM [dbo].[User]
             WHERE [username] = @username";
 
             string salt = (string)Database.Scalar(getSalt, new System.Collections.Generic.Dictionary<string, object>
@@ -109,7 +110,7 @@ namespace TicketApplication.Helpers.Classes
                 });
 
             string getHashed = @"SELECT [password]
-                FROM [dbo].[Users]
+                FROM [dbo].[User]
                 WHERE [username] = @username";
 
             string hashed = (string)Database.Scalar(getHashed, new System.Collections.Generic.Dictionary<string, object>
@@ -128,7 +129,6 @@ namespace TicketApplication.Helpers.Classes
                 // enter to log
                 // --------------------------------------------------------------------------------------------------------------------------------------------------
                 this.EnterLogin(ipAddress);
-                //Helpers.Variables.Admin = Convert.ToBoolean(Helpers.OutputFromDB.Int(Database.WPMScalarQuery(new SqlCommand("SELECT admin FROM [dbo].[Users] WHERE [username] = '" + this.Username + "'"))));
 
                 return true;
             }
@@ -147,7 +147,7 @@ namespace TicketApplication.Helpers.Classes
             ScryptEncoder encoder = new ScryptEncoder();
             this.Password = encoder.Encode(this.Salt + this.Password);
 
-            string sql = @"INSERT INTO [dbo].[Users] ([username],
+            string sql = @"INSERT INTO [dbo].[User] ([username],
               [password],
               [salt],
               [email])
@@ -178,7 +178,7 @@ namespace TicketApplication.Helpers.Classes
 
         public bool Delete()
         {
-            string sql = @"DELETE FROM [dbo].[Users] WHERE id = @id";
+            string sql = @"DELETE FROM [dbo].[User] WHERE id = @id";
 
             return Database.Non(sql, new System.Collections.Generic.Dictionary<string, object>
                 {
@@ -193,7 +193,7 @@ namespace TicketApplication.Helpers.Classes
             command.Parameters.Add("forgotten_link", SqlDbType.VarChar).Value = this.ForgottenLink;
             command.Parameters.Add("email", SqlDbType.VarChar).Value = this.Email;
 
-            int linkValidCount = Convert.ToInt32(Database.OldScalarQuery(command));
+            int linkValidCount = Convert.ToInt32(Database.WPMScalarQuery(command));
 
             return linkValidCount > 0 ? true : false;
         }
@@ -207,7 +207,7 @@ namespace TicketApplication.Helpers.Classes
             command.Parameters.Add("email", SqlDbType.VarChar).Value = this.Email;
             command.Parameters.Add("forgotten_link", SqlDbType.VarChar).Value = forgottenLink;
 
-            int isPasswordLinkUpdated = Convert.ToInt32(Database.OldScalarQuery(command));
+            int isPasswordLinkUpdated = Convert.ToInt32(Database.WPMScalarQuery(command));
 
             if (isPasswordLinkUpdated == 1)
             {
@@ -223,7 +223,7 @@ namespace TicketApplication.Helpers.Classes
                 emailContent.AppendLine("<p>Thanks,</p>");
                 emailContent.AppendLine("<p>NewCo</p>");
 
-                await Helpers.Emailer.SendEmail(this.Email, this.Username, "Reset your password", emailContent.ToString());
+                //await Helpers.Emailer.SendEmail(this.Email, this.Username, "Reset your password", emailContent.ToString());
 
                 return true;
             }
@@ -240,7 +240,7 @@ namespace TicketApplication.Helpers.Classes
                 this.Password = encoder.Encode(this.Salt + this.Password);
             }
 
-            string sql = @"UPDATE [dbo].[Users]
+            string sql = @"UPDATE [dbo].[User]
             SET [username] = @username
                ,[password] = @password
                ,[salt] = @salt
@@ -271,13 +271,13 @@ namespace TicketApplication.Helpers.Classes
             command.Parameters.Add("forgotten_link", SqlDbType.VarChar).Value = this.ForgottenLink;
             command.Parameters.Add("email", SqlDbType.VarChar).Value = this.Email;
 
-            bool isPasswordUpdated = Database.OldNonQuery(command);
+            bool isPasswordUpdated = Database.WPMNonQuery(command);
 
             if (isPasswordUpdated)
             {
                 // get users name
                 string usernameSql = @"SELECT [username]
-                FROM [dbo].[Users]
+                FROM [dbo].[User]
                 WHERE [email] = @email
                 AND [forgotten_link] = @forgottenLink";
 
@@ -295,7 +295,7 @@ namespace TicketApplication.Helpers.Classes
                 emailContent.AppendLine("<p>Thanks,</p>");
                 emailContent.AppendLine("<p>NewCo</p>");
 
-                Helpers.Emailer.SendEmail(this.Email, username, "Your password has been reset", emailContent.ToString());
+                //Helpers.Emailer.SendEmail(this.Email, username, "Your password has been reset", emailContent.ToString());
             }
 
             return isPasswordUpdated;
@@ -304,7 +304,7 @@ namespace TicketApplication.Helpers.Classes
         public bool UsernameTaken(string username)
         {
             string sql = @"SELECT COUNT(id)
-            FROM [dbo].[Users]
+            FROM [dbo].[User]
             WHERE username = @username";
 
             int userCount = Convert.ToInt32(Database.Scalar(sql, new System.Collections.Generic.Dictionary<string, object>
@@ -336,17 +336,17 @@ namespace TicketApplication.Helpers.Classes
 
         private void EnterLogin(string ipAddress, bool failed = false)
         {
-            SqlCommand command = new SqlCommand("dbo.usp_InsertLogin");
+            SqlCommand command = new SqlCommand("dbo.InsertLogin");
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add("username", SqlDbType.VarChar).Value = this.Username;
             command.Parameters.Add("ip_address", SqlDbType.VarChar).Value = ipAddress;
             command.Parameters.Add("failed", SqlDbType.Bit).Value = failed ? 1 : 0;
-            Database.OldNonQuery(command);
+            Database.WPMNonQuery(command);
         }
 
         private DataRow GetUser(int id)
         {
-            DataTable users = Database.OldDataQuery(new SqlCommand("SELECT * FROM [dbo].[Users] WHERE id = " + id));
+            DataTable users = Database.WPMDataQuery(new SqlCommand("SELECT * FROM [dbo].[User] WHERE id = " + id));
 
             if (users.Rows.Count < 1)
             {
@@ -359,7 +359,7 @@ namespace TicketApplication.Helpers.Classes
         private DataRow GetUser(string username)
         {
             string sql = @"SELECT *
-            FROM [dbo].[Users]
+            FROM [dbo].[User]
             WHERE [username] = @username";
 
             return Helpers.General.ReturnFirst(Database.Data(sql, new System.Collections.Generic.Dictionary<string, object>
@@ -371,7 +371,7 @@ namespace TicketApplication.Helpers.Classes
         private DataRow GetUser(string username, string email)
         {
             string sql = @"SELECT *
-            FROM [dbo].[Users]
+            FROM [dbo].[User]
             WHERE [username] = @username
             AND [email] = @email";
 
@@ -385,7 +385,7 @@ namespace TicketApplication.Helpers.Classes
         private DataRow GetUser(string email, string forgottenLink, bool forgotten)
         {
             string sql = @"SELECT *
-            FROM [dbo].[Users]
+            FROM [dbo].[User]
             WHERE email = @email
             AND forgotten_link = @forgottenLink";
 
@@ -413,7 +413,6 @@ namespace TicketApplication.Helpers.Classes
                 this.Email = Helpers.OutputFromDB.StringEmpty(user["email"]);
                 this.ForgottenLink = Helpers.OutputFromDB.StringEmpty(user["forgotten_link"]);
                 this.ForgottenValidUntil = Helpers.OutputFromDB.Date(user["forgotten_valid_until"]);
-                this.Admin = Helpers.OutputFromDB.Int(user["admin"]) == 1 ? true : false;
             }
         }
     }

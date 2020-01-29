@@ -46,7 +46,7 @@ namespace TicketApplication.Helpers.Classes
                     }
                 }
 
-                DataTable dt = OldDataQuery(command);
+                DataTable dt = WPMDataQuery(command);
 
                 if (dt == null) return null;
 
@@ -80,11 +80,11 @@ namespace TicketApplication.Helpers.Classes
                     }
                 }
 
-                return OldNonQuery(command);
+                return WPMNonQuery(command);
             }
         }
 
-        public static DataTable OldDataQuery(SqlCommand command)
+        public static DataTable WPMDataQuery(SqlCommand command)
         {
             command.CommandTimeout = 0;
             DataTable dt = null;
@@ -119,7 +119,7 @@ namespace TicketApplication.Helpers.Classes
             return dt;
         }
 
-        public static bool OldNonQuery(SqlCommand command)
+        public static bool WPMNonQuery(SqlCommand command)
         {
             command.CommandTimeout = 0;
             bool returnBool = true;
@@ -152,7 +152,7 @@ namespace TicketApplication.Helpers.Classes
             return returnBool;
         }
 
-        public static object OldScalarQuery(SqlCommand command)
+        public static object WPMScalarQuery(SqlCommand command)
         {
             command.CommandTimeout = 0;
             object returnObject = null;
@@ -211,7 +211,7 @@ namespace TicketApplication.Helpers.Classes
                     }
                 }
 
-                return OldScalarQuery(command);
+                return WPMScalarQuery(command);
             }
         }
 
@@ -247,7 +247,7 @@ namespace TicketApplication.Helpers.Classes
             insertError.Parameters.Add("username", SqlDbType.VarChar).Value = DBNull.Value;
             insertError.Parameters.Add("message", SqlDbType.VarChar).Value = message;
             insertError.Parameters.Add("stack_trace", SqlDbType.VarChar).Value = ex.StackTrace;
-            bool entered = OldNonQuery(insertError);
+            bool entered = WPMNonQuery(insertError);
         }
     }
 }
